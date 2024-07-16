@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home || Hospitals || Responsive HTML 5 Template</title>
+
+	<!-- responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- master stylesheet -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- Responsive stylesheet -->
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" href="{%  static 'images/favicon/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{%  static 'images/favicon/favicon-16x16.png' %}" sizes="16x16">
+
+    <!-- Fixing Internet Explorer-->
+    <!--[if lt IE 9]>
+        <script src="'http://html5shiv.googlecode.com/svn/trunk/html5.js' "></script>
+        <script src="{% static 'js/html5shiv.js' %}"></script>
+    <![endif]-->
+
+</head>
+<head>
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Другие теги meta и стили -->
+</head>
+<body>
+    <!-- Ваш контент -->
+    
+    <!-- Вставляем скрипт jQuery здесь -->
+    <script>
+    $(document).ready(function() {
+        // Код jQuery
+        updateCartItemCount(); // Вызываем функцию при загрузке страницы
+
+        // Функция для обновления текста кнопки корзины
+        function updateCartItemCount() {
+            var itemCount = {{ cart.items_cart.count }}; // Получаем количество товаров в корзине
+            $('.cart_select span').text('(' + itemCount + ')'); // Обновляем текст кнопки корзины
+        }
+    });
+    </script>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#update-cart-btn').click(function(event) {
+            event.preventDefault();  // Prevent default form submission
+            
+            // Perform AJAX request to update cart
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'update_cart' %}',  // Replace 'update_cart' with your actual URL name
+                data: {
+                    // Provide any necessary data here, like cart updates
+                    // Example: cart_item_id: '123',
+                },
+                success: function(data) {
+                    // Handle success response
+                    console.log('Cart updated successfully');
+                    // Optionally, update the cart UI or display a message
+                },
+                error: function(xhr, errmsg, err) {
+                    // Handle error response
+                    console.log('Error updating cart:', errmsg);
+                }
+            });
+        });
+    });
+    </script>
+<body>
+<div class="boxed_wrapper">
+
+
+    {% block content %}
+    {% endblock %}
+
+
+
+
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="flaticon-triangle-inside-circle"></span></div>
+
+<!-- main jQuery -->
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<!-- Wow Script -->
+<script src="{%  static 'js/wow.js' %}"></script>
+<!-- bootstrap -->
+<script src="{%  static 'js/bootstrap.min.js' %}"></script>
+<!-- bx slider -->
+<script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
+<!-- count to -->
+<script src="{%  static 'js/jquery.bxslider.min.js' %}"></script>
+<!-- owl carousel -->
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<!-- validate -->
+<script src="{% static 'js/validation.js' %}"></script>
+<!-- mixit up -->
+<script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+<!-- easing -->
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<!-- gmap helper -->
+<script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAHzPSV2jshbjI8fqnC_C4L08ffnj5EN3A' %}"></script>
+<!--gmap script-->
+<script src="{% static 'js/gmaps.js' %}"></script>
+<script src="j{% static 's/map-helper.js' %}"></script>
+<!-- fancy box -->
+<script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<!-- isotope script-->
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'js/jquery.bootstrap-touchspin.js' %}"></script>
+<!-- jQuery timepicker js -->
+<script src="../../static/assets/timepicker/timePicker.js"></script>
+<!-- Bootstrap select picker js -->
+<script src="../../static/assets/bootstrap-sl-1.12.1/bootstrap-select.js"></script>
+<!-- Bootstrap bootstrap touchspin js -->
+<!-- jQuery ui js -->
+<script src="../../static/assets/jquery-ui-1.11.4/jquery-ui.js"></script>
+<!-- Language Switche  -->
+<script src="../../static/assets/language-switcher/jquery.polyglot.language.switcher.js"></script>
+<!-- Html 5 light box script-->
+<script src="../../static/assets/html5lightbox/html5lightbox.js"></script>
+
+
+<!-- revolution slider js -->
+<script src="../../static/assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="../../static/assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="../../static/assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+
+
+<!-- thm custom script -->
+<script src="{% static 'js/custom.js' %}"></script>
+
+
+
+
+
+</body>
+</html>

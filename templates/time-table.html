@@ -1,0 +1,242 @@
+
+{% extends 'base/base.html' %}
+
+
+{% load static %}
+
+
+  {% block content %}
+
+<!--Start Preloader -->
+
+<!--End Preloader --> 
+
+<!--Start header area-->
+
+<!--Start top bar area-->
+{% include 'base/topbararea.html' %}
+<!--End top bar area-->  
+
+<!--Start header area--> 
+
+{% include 'base/header.html' %}
+
+<!--Start header-search  area-->
+<section class="header-search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-form pull-right">
+                    <form action="#">
+                        <div class="search">
+                            <input type="search" name="search" value="" placeholder="Search">
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End header-search  area-->        
+
+<!--Start mainmenu area-->
+
+<!--End mainmenu area-->
+{% include 'base/mainmenu.html' %}
+
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area" style="background-image: url({%static 'images/resources/breadcrumb-bg.jpg'%});">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="breadcrumbs">
+	                <h1>Time Table</h1>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="breadcrumb-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="left pull-left">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Time Table</li>
+                        </ul>
+                    </div>
+                    <div class="right pull-right">
+                        <a href="#">
+                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
+                        </a>   
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% load dict_filters %}
+
+<div class="time-table-area">
+    <div class="container">
+        <div class="row pd-bottom">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <select class="selectmenu">
+                            <option selected="selected">Выберите отделение</option>
+                            <option>Кардиология</option>
+                            <option>Пульмонология</option>
+                            <option>Гинекология</option>
+                            <option>Неврология</option>
+                            <option>Урология</option>
+                            <option>Гастрология</option>
+                            <option>Педиатр</option>
+                            <option>Лаборатория</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-box">
+                            <input type="text" name="date" placeholder="Выберите дату" id="datepicker">
+                            <div class="icon-box">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="time-table" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Доктора</th>
+                                <th>Понедельник</th>
+                                <th>Вторник</th>
+                                <th>Среда</th>
+                                <th>Четверг</th>
+                                <th>Пятница</th>
+                                <th>Суббота</th>
+                                <th>Воскресенье</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doctor in doctors %}
+                            <tr>
+                                <td class="single-box time">
+                                    <div class="inner-content text-center">
+                                        <h6>Доктор: <span>{{ doctor.name }}</span></h6>
+                                    </div>
+                                </td>
+                                <td class="single-box bgclr-1">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Monday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="single-box bgclr-2">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Tuesday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="single-box bgclr-3">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Wednesday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="single-box bgclr-4">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Thursday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="single-box bgclr-3">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Friday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="single-box bgclr-4">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Saturday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="single-box bgclr-1">
+                                    {% for schedule in doctor.schedule_set.all %}
+                                        {% if schedule.day == 'Sunday' %}
+                                            <div class="inner-content text-center">
+                                                <span>Время: {{ schedule.time }}</span>
+                                                <p>Опыт: {{ schedule.experience }}</p>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Start footer area-->  
+{% include 'base/footer.html' %}
+<!--End footer area-->
+
+<!--Start footer bottom area-->
+<section class="footer-bottom-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="copyright-text">
+                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p> 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="footer-social-links">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End footer bottom area-->
+
+{%endblock%}

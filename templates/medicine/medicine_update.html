@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Medicine</title>
+</head>
+<body>
+    <h2>Update Medicine</h2>
+    <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+        <a href="{% url 'shop' %}">Cancel</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,544 @@
+
+{% extends 'base/base.html' %}
+
+
+{% load static %}
+
+
+  {% block content %}
+
+<!--Start Preloader -->
+{#<div class="preloader"></div>#}
+<!--End Preloader --> 
+
+<!--Start header area-->
+
+<!--Start top bar area-->
+      {% include 'base/topbararea.html' %}
+<!--End top bar area-->
+
+<!--Start header area-->
+{% include 'base/header.html' %}
+<!--End header area-->
+
+<!--Start header-search  area-->
+<!--End header-search  area-->
+
+<!--Start mainmenu area-->
+ {% include 'base/mainmenu.html' %}
+<!--End mainmenu area-->
+
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area" style="background-image: url({% static 'images/resources/breadcrumb-bg.jpg' %});">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="breadcrumbs">
+	                <h1>About Us</h1>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="breadcrumb-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="left pull-left">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">About Us</li>
+                        </ul>
+                    </div>
+                    <div class="right pull-right">
+                        <a href="#">
+                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
+                        </a>   
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start welcome area-->
+<section class="welcome-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img-holder">
+                    <img src="{% static 'images/resources/welcome.jpg' %}" alt="Awesome Image">
+                </div>
+                <div class="inner-content">
+                    <p>As a tertiary referral ICU to provide state of the art care with the help of very good professionals and infrastructure.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-holder">
+                    <div class="title">
+                        <h1>Welcome to the Hospitals</h1>
+                        <p>It is a long established fact that a reader will be distracted by the readable content more or less normal distribution of letters opposed.</p>    
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="single-item">
+                                <div class="iocn-box">
+                                    <span class="flaticon-shapes"></span>
+                                </div>
+                                <div class="text-box">
+                                    <h3>Our Mission</h3>
+                                    <p>Reader will be distracted by the readable content of a page when looking at its layout the point of using more or less normal distribution.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="single-item">
+                                <div class="iocn-box">
+                                    <span class="flaticon-technology-2"></span>
+                                </div>
+                                <div class="text-box">
+                                    <h3>Our Vision</h3>
+                                    <p>Explain to you how all this mistaken idea of denouncing pleasure.</p>
+                                    <div class="text">
+                                        <p><i class="fa fa-hand-o-right"></i>Idea of denouncing pleasure and praising.</p>    
+                                        <p><i class="fa fa-hand-o-right"></i>Pleasure and praising pain was complete system.</p>    
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="button">
+                        {% comment %} <a class="thm-btn bgclr-1" href="#">Our Departments</a> {% endcomment %}
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+<!--End welcome area-->
+ 
+<!--Start special features area-->
+{% comment %} <section class="special-features-area">
+    <div class="container">
+        <div class="row">
+            <!--Start single item-->
+            <div class="col-md-4">
+                <div class="single-item">
+                    <div class="icon-box">
+                        <span class="flaticon-transport"></span>    
+                    </div>
+                    <div class="text-box">
+                        <h3>24 Hrs Ambulance</h3>
+                        <p>How all this mistaken idea denoucing pleasure and praisings pain was born complete account expound.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End single item-->
+            <!--Start single item-->
+            <div class="col-md-4">
+                <div class="single-item">
+                    <div class="icon-box">
+                        <span class="flaticon-drink"></span>    
+                    </div>
+                    <div class="text-box">
+                        <h3>Food & Dietry</h3>
+                        <p>There anyone who loves or pursues or to obtain pain of itself, because it is but because occasionally.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End single item-->
+            <!--Start single item-->
+            <div class="col-md-4">
+                <div class="single-item">
+                    <div class="icon-box">
+                        <span class="flaticon-avatar"></span>    
+                    </div>
+                    <div class="text-box">
+                        <h3>Special Nurses</h3>
+                        <p>Pursues or desires to obtain pain itself, because is pain, because occasionally circumstances occur procure.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End single item-->
+        </div>
+        <div class="row">   
+            <!--Start single item-->
+            <div class="col-md-4">
+                <div class="single-item">
+                    <div class="icon-box">
+                        <span class="flaticon-church"></span>    
+                    </div>
+                    <div class="text-box">
+                        <h3>Places of Worship</h3>
+                        <p>Undertakes laborious physical exercise, except to obtain some advantage from it but who has any right.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End single item-->
+            <!--Start single item-->
+            <div class="col-md-4">
+                <div class="single-item">
+                    <div class="icon-box">
+                        <span class="flaticon-phone"></span>    
+                    </div>
+                    <div class="text-box">
+                        <h3>Customer Support</h3>
+                        <p>Undertakes laborious physical exercise, except to obtain some advantage from it but who has any right.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End single item-->
+            <!--Start single item-->
+            <div class="col-md-4">
+                <div class="single-item">
+                    <div class="icon-box">
+                        <span class="flaticon-medical-2"></span>    
+                    </div>
+                    <div class="text-box">
+                        <h3>Very Fast Aid</h3>
+                        <p>Pursues or desires to obtain pain itself, because is pain, because occasionally circumstances occur procure.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End single item-->
+        </div>    
+    </div>
+</section>  {% endcomment %}
+<!--End special features area-->
+
+<!--Start slogan area-->
+{% comment %} <section class="slogan-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title pull-left">
+                    <h2>If you are a patient seeking quality healthcare at affordable prices!.</h2>
+                </div>
+                <div class="button pull-right">
+                    <a class="thm-btn bgclr-1" href="#">Make an Appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{ </section>    {% endcomment %}
+<!--End slogan area-->
+
+<!--Start project faq area-->
+{% comment %} <section class="project-faq-area sec-padding"> 
+    <div class="container">
+        <div class="sec-title mar0auto text-center">
+            <h1>Photo Gallery & FAQ’s</h1>
+            <span class="border"></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="latest-project">
+                    <!--Start single blog post-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{% static 'images/projects/latest-project-1.jpg' %}" alt="Awesome Image">
+                            <div class="overlay-style-one">
+                                <div class="box">
+                                    <div class="content">
+                                        <a href="projects-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single blog post-->
+                    <!--Start single blog post-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{% static 'images/projects/latest-project-2.jpg' %}" alt="Awesome Image">
+                            <div class="overlay-style-one">
+                                <div class="box">
+                                    <div class="content">
+                                        <a href="projects-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single blog post-->
+                    <!--Start single blog post-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{% static 'images/projects/latest-project-3.jpg' %}" alt="Awesome Image">
+                            <div class="overlay-style-one">
+                                <div class="box">
+                                    <div class="content">
+                                        <a href="projects-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single blog post-->
+                    <!--Start single blog post-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{% static 'images/projects/latest-project-4.jpg' %}" alt="Awesome Image">
+                            <div class="overlay-style-one">
+                                <div class="box">
+                                    <div class="content">
+                                        <a href="projects-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single blog post-->
+                    <!--Start single blog post-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{% static 'images/projects/latest-project-5.jpg' %}" alt="Awesome Image">
+                            <div class="overlay-style-one">
+                                <div class="box">
+                                    <div class="content">
+                                        <a href="projects-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single blog post-->
+                    <!--Start single blog post-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{% static 'images/projects/latest-project-6.jpg' %}" alt="Awesome Image">
+                            <div class="overlay-style-one">
+                                <div class="box">
+                                    <div class="content">
+                                        <a href="projects-single.html"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single blog post-->
+                </div>    
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="faq-content">
+                    <div class="accordion-box">
+                        <!--Start single accordion box-->
+                        <div class="accordion accordion-block">
+                            <div class="accord-btn">
+                                <h4>Where is the hospital located?</h4>
+                            </div>
+                            <div class="accord-content">
+                                <p>A Patient Centered Medical Home is a model of healthcare delivery in which care is tailored to the needs & preferences of patients, the Patient Centered Medical  model encourages.</p>
+                            </div>
+                        </div>
+                        <!--End single accordion box--> 
+                        <!--Start single accordion box-->
+                        <div class="accordion accordion-block">
+                            <div class="accord-btn active">
+                                <h4>What is the deposit amount for admission?</h4>
+                            </div>
+                            <div class="accord-content collapsed">
+                                <p>A Patient Centered Medical Home is a model of healthcare delivery in which care is tailored to the needs & preferences of patients, the Patient Centered Medical  model encourages.</p>
+                            </div>
+                        </div>
+                        <!--End single accordion box-->
+                        <!--Start single accordion box-->
+                        <div class="accordion accordion-block last">
+                            <div class="accord-btn last">
+                                <h4>What are the visiting hours?</h4>
+                            </div>
+                            <div class="accord-content">
+                                <p>A Patient Centered Medical Home is a model of healthcare delivery in which care is tailored to the needs & preferences of patients, the Patient Centered Medical  model encourages.</p>
+                            </div>
+                        </div>
+                        <!--End single accordion box-->
+                        <!--Start single accordion box-->
+                        <div class="accordion accordion-block">
+                            <div class="accord-btn">
+                                <h4>How many visitors are allowed at a time?</h4>
+                            </div>
+                            <div class="accord-content">
+                                <p>A Patient Centered Medical Home is a model of healthcare delivery in which care is tailored to the needs & preferences of patients, the Patient Centered Medical  model encourages.</p>
+                            </div>
+                        </div>
+                        <!--End single accordion box-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section> }
+<!--End project faq area--> 
+
+<!--Start fact counter area-->
+{% comment %} <section class="fact-counter-area black-bg" style="background-image:url({% static 'images/resources/fact-counter-bg-v2.jpg' %});">
+    <div class="container">
+        <div class="sec-title text-center">
+            <h1>Keep <span>your headup</span> & be patient</h1>
+            <p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the<br> system and expound the actual teachings of the great.</p>
+        </div>
+        <div class="row">
+            <!--Start single item-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul>
+                    <li>
+                        <div class="single-item text-center">
+                            <div class="icon-holder">
+                                <span class="flaticon-medical"></span> 
+                            </div>
+                            <h1><span class="timer" data-from="1" data-to="25" data-speed="5000" data-refresh-interval="50">25</span></h1>
+                            <h3>Years of Experience</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-item text-center">
+                            <div class="icon-holder">
+                                <span class="flaticon-smile"></span> 
+                            </div>
+                            <h1><span class="timer" data-from="1" data-to="284" data-speed="5000" data-refresh-interval="50">284</span></h1>
+                            <h3>Well Smiley Faces</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-item text-center">
+                            <div class="icon-holder">
+                                <span class="flaticon-medical-1"></span> 
+                            </div>
+                            <h1><span class="timer" data-from="1" data-to="176" data-speed="5000" data-refresh-interval="50">176</span></h1>
+                            <h3>Heart Transplant</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-item text-center">
+                            <div class="icon-holder">
+                                <span class="flaticon-ribbon"></span> 
+                            </div>
+                            <h1><span class="timer" data-from="1" data-to="142" data-speed="5000" data-refresh-interval="50">142</span></h1>
+                            <h3>Awards Holded</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--End single item-->
+     
+        </div>
+    </div>
+</section> {% endcomment %}
+<!--End fact counter area-->
+
+<!--Start team area-->
+
+<!--End team area--> 
+
+<!--Start certificates area-->  
+<section class="certificates-area">
+    <div class="container">
+        <div class="sec-title">
+            <h1>Awards & Recognition</h1>
+            <span class="border"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="certificates">
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/1.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/2.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/3.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/4.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/1.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/2.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/3.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/4.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/1.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/2.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/3.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                    <!--Start single item-->
+                    <a href="#">
+                        <div class="single-item">
+                            <img src="{% static 'images/certificates/4.jpg' %}" alt="Awesome Image">
+                        </div>
+                    </a>
+                    <!--End single item-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End certificates area-->  
+  
+<!--Start footer area-->
+{% include 'base/footer.html' %}
+<!--End footer area-->
+
+<!--Start footer bottom area-->
+<!--End footer bottom area-->
+
+</div>
+
+{% endblock %}

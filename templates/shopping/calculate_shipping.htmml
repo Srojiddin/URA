@@ -1,0 +1,23 @@
+<form action="{% url 'calculate_shipping' %}" method="post">
+    {% csrf_token %}
+    <div class="calculate-shipping">
+        <div class="sec-title">
+            <h1>Рассчитать доставку</h1>
+        </div>
+        <select class="selectmenu" name="country">
+            <option selected="selected">Великобритания (UK)</option>
+            <option>Соединенные Штаты (USA)</option>
+            <option>Франция</option>
+            <!-- Добавьте больше опций при необходимости -->
+        </select>
+        <div class="row">
+            <div class="col-lg-6">
+                <input class="mar-bottom" type="text" name="state_country" placeholder="Штат / Страна" required>
+            </div>
+            <div class="col-lg-6">
+                <input class="zip-code" type="text" name="zip_code" placeholder="Почтовый индекс" required>
+            </div>
+        </div>
+        <button class="thm-btn bgclr-1" type="submit">Обновить итоги</button>
+    </div>
+</form>

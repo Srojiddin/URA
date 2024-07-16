@@ -1,0 +1,201 @@
+
+{% extends 'base/base.html' %}
+
+
+{% load static %}
+
+
+  {% block content %}
+<!--Start Preloader -->
+{#<div class="preloader"></div>#}
+<!--End Preloader --> 
+
+<!--Start header area-->
+
+<!--Start top bar area-->
+      {% include 'base/topbararea.html' %}
+<!--End top bar area-->
+
+<!--Start header area--> 
+{% include 'base/header.html' %}
+<!--End header area-->  
+
+<!--Start header-search  area-->
+{#<section class="header-search">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-12 col-sm-12 col-xs-12">#}
+{#                <div class="search-form pull-right">#}
+{#                    <form action="#">#}
+{#                        <div class="search">#}
+{#                            <input type="search" name="search" value="" placeholder="Search">#}
+{#                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<!--End header-search  area-->        
+
+<!--Start mainmenu area-->
+      {% include 'base/mainmenu.html' %}
+<!--End mainmenu area-->
+
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area" style="background-image: url({% static 'images/resources/breadcrumb-bg.jpg' %});">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="breadcrumbs">
+	                <h1>News Default</h1>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="breadcrumb-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="left pull-left">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">News Default</li>
+                        </ul>
+                    </div>
+                    <div class="right pull-right">
+                        <a href="#">
+                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
+                        </a>   
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start blog area-->
+<section id="blog-area" class="blog-default-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="blog-post">
+                    <div class="row">
+                        <!--Start single blog post-->
+                        <div class="col-md-6">
+                            {% for blog in blogs %}
+                            <div class="single-blog-item wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
+                                <div class="img-holder">
+                                    <img src="{{ blog.image_for_blogs.url }}" alt="Awesome Image">
+                                    <div class="overlay-style-one">
+                                        <div class="box">
+                                            <div class="content">
+                                                <a href="{% url 'blog-single' %}"><span class="flaticon-plus-symbol"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-holder">
+                                    <a href="{% url 'blog-single' %}">
+                                        <h3 class="blog-title">{{ blog.title }}</h3>
+                                    </a>
+                                    <div class="text">
+                                        <p>{{ blog.description }}</p>
+                                    </div>
+                                    <ul class="meta-info">
+                                        <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{ blog.creation_date }}</a></li>
+                                        <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>21 Comments</a></li>
+                                    </ul>
+                                    {% if request.user.is_superuser %}
+                                    <div class="admin-buttons">
+                                        <a href="{% url 'create_blog' %}" class="btn btn-primary">created</a>
+                                        <a href="{% url 'update' blog.id %}" class="btn btn-primary">Редактировать</a>
+                                        <a href="{% url 'delete' blog.id %}" class="btn btn-danger">Удалить</a>
+                                    </div>
+                                    {% endif %}
+                                </div>    
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% if request.user.is_superuser %}
+                <div class="create-button">
+                    <a href="{% url 'create_blog' %} " class="btn btn-success">Создать новый блог</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+                        <!--End single blog post-->
+                        <!--Start single blog post-->
+{#                        <!--End single blog post-->#}
+{#                    </div>#}
+{#                    <div class="row">#}
+                        <!--Start single blog post-->
+                        <!--End single blog post-->
+                        <!--Start single blog post-->
+{#                        <!--End single blog post-->#}
+{#                    </div>#}
+{#                    <div class="row">#}
+{#                        <!--Start single blog post-->#}
+                        <!--End single blog post-->
+                        <!--Start single blog post-->
+                        <!--End single blog post-->
+                    </div>
+                    <!--Start post pagination-->
+                    <div class="row">
+                        <div class="col-md-12"> 
+                            <ul class="post-pagination text-center">
+                                <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i></a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                    <!--End post pagination-->
+                </div>
+            </div>
+            <!--Start sidebar Wrapper-->
+        
+            <!--End Sidebar Wrapper-->  
+        </div>
+    </div>
+</section> 
+<!--End blog area-->                                                                        
+  
+<!--Start footer area-->
+      {% include 'base/footer.html' %}
+<!--End footer area-->
+
+<!--Start footer bottom area-->
+{#<section class="footer-bottom-area">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-8">#}
+{#                <div class="copyright-text">#}
+{#                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p> #}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <ul class="footer-social-links">#}
+{#                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<!--End footer bottom area-->
+
+</div>
+
+ {% endblock %}

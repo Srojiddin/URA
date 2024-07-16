@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Обновить блог</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Обновить блог</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Обновить</button>
+    </form>
+    <a href="{% url 'blog' %}">Назад к списку блогов</a>
+</body>
+</html>

@@ -1,0 +1,102 @@
+
+{% extends 'base/base.html' %}
+
+
+{% load static %}
+
+
+  {% block content %}
+
+
+
+
+</head>
+<body>
+<div class="boxed_wrapper">
+
+<!--Start Preloader -->
+{#<div class="preloader"></div>#}
+<!--End Preloader --> 
+
+<!--Start header area-->
+
+<!--Start top bar area-->
+    {% include 'base/topbararea.html' %}
+<!--End top bar area-->
+
+<!--Start header area-->
+    {% include 'base/header.html' %}
+<!--End header area-->
+
+<!--Start header-search  area-->
+<!--End header-search  area-->
+
+<!--Start mainmenu area-->
+    {% include 'base/mainmenu.html' %}
+<!--End mainmenu area-->
+
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area" style="background-image: url({% static 'images/resources/breadcrumb-bg.jpg' %});">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="breadcrumbs">
+	                <h1>Contact Us</h1>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="breadcrumb-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="left pull-left">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Contact Us</li>
+                        </ul>
+                    </div>
+                    <div class="right pull-right">
+                        <a href="#">
+                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
+                        </a>   
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+
+
+<!--Start footer area-->
+    {% include 'base/footer.html' %}
+<!--End footer area-->
+
+<!--Start footer bottom area-->
+{#<section class="footer-bottom-area">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-8">#}
+{#                <div class="copyright-text">#}
+{#                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <ul class="footer-social-links">#}
+{#                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<!--End footer bottom area-->
+
+</div>
+
+{% endblock %}

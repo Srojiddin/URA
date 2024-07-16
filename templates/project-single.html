@@ -1,0 +1,198 @@
+
+{% extends 'base/base.html' %}
+
+
+{% load static %}
+
+
+  {% block content %}
+
+{#<!--Start Preloader -->#}
+{#<div class="preloader"></div>#}
+<!--End Preloader --> 
+
+<!--Start header area-->
+
+<!--Start top bar area-->
+      {% include 'base/topbararea.html' %}
+<!--End top bar area-->
+
+<!--Start header area-->
+      {% include 'base/header.html' %}
+<!--End header area-->
+
+<!--Start header-search  area-->
+{#<section class="header-search">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-12 col-sm-12 col-xs-12">#}
+{#                <div class="search-form pull-right">#}
+{#                    <form action="#">#}
+{#                        <div class="search">#}
+{#                            <input type="search" name="search" value="" placeholder="Search">#}
+{#                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<!--End header-search  area-->        
+
+<!--Start mainmenu area-->
+      {% include 'base/mainmenu.html' %}
+<!--End mainmenu area-->
+
+<!--Start breadcrumb area-->     
+<section class="breadcrumb-area" style="background-image: url({% static 'images/resources/breadcrumb-bg.jpg' %});">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="breadcrumbs">
+	                <h1>Gallery Single</h1>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="breadcrumb-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="left pull-left">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Gallery</li>
+                        </ul>
+                    </div>
+                    <div class="right pull-right">
+                        <a href="#">
+                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
+                        </a>   
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start project single area-->
+<section id="project-single-area">
+    <div class="container">
+        <div class="row">
+             {% for gallery in blogs %}
+            <div class="col-md-7">
+                <div class="project-single-carousel">
+                    <!--Start single project item-->
+                    <div class="single-project-item">
+                        <div class="img-holder">
+                            <img src="{{  gallery.image_for_Gallery.url }}" alt="Awesome Image">
+                        </div> 
+                    </div>
+                    <!--End single project item-->
+                </div>
+            </div>
+            {% comment %} <div class="col-md-5">
+                <div class="project-info">
+                    <div class="inner-content">
+                        <p>{{ gallery.description }}</p>
+                            <h1>Informations</h1>
+                            <span class="border"></span>
+                        </div>
+                    </div>
+                    <ul class="project-info-list">
+                        <li>
+                            <div class="icon-holder">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </div>
+                            <div class="text-holder">
+                                <h5>Client</h5>
+                                <p>Saara Lyone Dath</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-holder">
+                                <i class="fa fa-folder-open" aria-hidden="true"></i> {% endcomment %}
+                            {% comment %} </div>
+                            <div class="text-holder"> {% endcomment %}
+{#                                <h5>Technology</h5>#}
+{#                                <p>Electronic Aspirin</p>#}
+{#                            </div>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <div class="icon-holder">#}
+{#                                <i class="fa fa-calendar" aria-hidden="true"></i>#}
+{#                            </div>#}
+{#                            <div class="text-holder">#}
+{#                                <h5>Start Date</h5>#}
+{#                                <p>21st February 2017</p>#}
+{#                            </div>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <div class="icon-holder">#}
+{#                                <i class="fa fa-calendar" aria-hidden="true"></i>#}
+{#                            </div>#}
+{#                            <div class="text-holder">#}
+{#                                <h5>End Date</h5>#}
+{#                            <p>27th March 2017</p>#}
+{#                            </div>#}
+{#                        </li>#}
+{#                    </ul>#}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="row bottom">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="button prev pull-left">
+                    <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i>Prev</a>    
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="icon-holder text-center">
+                    <a href="#">
+                        <i class="fa fa-th" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="button next pull-right">
+                    <a href="#">Next<i class="fa fa-angle-right" aria-hidden="true"></i></a>    
+                </div>
+            </div>
+        </div>                                          
+    </div>
+</section>                                                                      
+<!--End project single area-->    
+  
+<!--Start footer area-->
+      {% include 'base/footer.html' %}
+<!--End footer area-->
+
+<!--Start footer bottom area-->
+{#<section class="footer-bottom-area">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-8">#}
+{#                <div class="copyright-text">#}
+{#                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p> #}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <ul class="footer-social-links">#}
+{#                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<!--End footer bottom area-->
+
+</div>
+
+{% endblock %}

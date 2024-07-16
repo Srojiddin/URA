@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Записи к доктору</title>
+</head>
+<body>
+    <h1>Записи к доктору {{ request.user.doctor }}</h1>
+    <ul>
+        {% for appointment in appointments %}
+            <li>
+                <p><strong>Пациент:</strong> {{ appointment.fullname }}</p>
+                <p><strong>Дата и время записи:</strong> {{ appointment.date_of_reservation }} {{ appointment.time_of_reservation }}</p>
+                <!-- Добавьте другие поля, которые необходимо отобразить -->
+            </li>
+        {% empty %}
+            <li>Нет записей к вам.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

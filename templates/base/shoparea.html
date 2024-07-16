@@ -1,0 +1,79 @@
+{% load static %}
+
+<section class="shop-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 pull-right">
+                <div class="shop-content">
+                    <div class="row showing-result-shorting">
+                        <div class="col-md-12">
+                            <div class="shorting pull-right">
+                                <select class="selectmenu">
+                                    <option selected="selected">Default Sorting</option>
+                                    <option>Default Sorting one</option>
+                                    <option>Default Sorting Two</option>
+                                    <option>Default Sorting Three</option>
+                                </select>
+                            </div>
+                            <div class="showing pull-left">
+                                <p>Showing 1-{{ products|length }} of {{ products|length }} results</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for medicine in products %}
+                        <!-- Start single product item -->
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="single-product-item">
+                                <div class="img-holder">
+                                    {% if medicine.image %}
+                                    <img src="{{ medicine.image.url }}" alt="Awesome Product Image">
+                                     {% else %}
+    <p>No image available</p>
+{% endif %}
+                                    <div class="overlay-style-one">
+                                        <div class="box">
+                                            <div class="content">
+                                                <div class="product">
+                                                    {% comment %} <h3>{{ medicine.title }}</h3> {% endcomment %}
+                                                    {% comment %} <p>{{ medicine.description }}</p> {% endcomment %}
+                                                    <form action="{% url 'add_to_cart' medicine.pk %}" method="post">
+                                                        {% csrf_token %}
+                                                        <!-- Assuming AddToCartForm includes quantity field -->
+                                                        {{ form.quantity }}
+                                                        <button class="thm-btn bgclr-1 addtocart" type="submit">Add to Cart</button>
+                                                    </form>
+                                                    {% if request.user.is_superuser  %}
+                                                    <div class="admin-buttons">
+                                                        <a href="{% url 'medicine_create'  %}" class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{% url 'medicine_update' medicine.pk %}" class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{% url 'medicine_delete' medicine.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="title-holder">
+                                    <div class="top clearfix">
+                                        <div class="product-title pull-left">
+                                            <h5>{{ medicine.title}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="product-value">
+                                        <h4>{{ medicine.price }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End single product item -->
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>   
+</div>
+</div>
+</section>
