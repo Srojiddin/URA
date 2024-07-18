@@ -7,36 +7,45 @@
 
   {% block content %}
 
-
-
-
-</head>
-<body>
-<div class="boxed_wrapper">
-
 <!--Start Preloader -->
-{#<div class="preloader"></div>#}
+{% comment %} <div class="preloader"></div> {% endcomment %}
 <!--End Preloader --> 
 
 <!--Start header area-->
 
 <!--Start top bar area-->
-    {% include 'base/topbararea.html' %}
-<!--End top bar area-->
+{% include 'base/topbararea.html' %}
+<!--End top bar area-->  
 
-<!--Start header area-->
-    {% include 'base/header.html' %}
-<!--End header area-->
+<!--Start header area--> 
+{% include 'base/header.html' %} 
+<!--End header area-->  
 
 <!--Start header-search  area-->
-<!--End header-search  area-->
+{% comment %} <section class="header-search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-form pull-right">
+                    <form action="#">
+                        <div class="search">
+                            <input type="search" name="search" value="" placeholder="Search">
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> {% endcomment %}
+<!--End header-search  area-->        
 
 <!--Start mainmenu area-->
-    {% include 'base/mainmenu.html' %}
+{% include 'base/mainmenu.html' %}
 <!--End mainmenu area-->
 
 <!--Start breadcrumb area-->     
-<section class="breadcrumb-area" style="background-image: url({% static 'images/resources/breadcrumb-bg.jpg' %});">
+<section class="breadcrumb-area" style="background-image: url({%static 'images/resources/breadcrumb-bg.jpg' %});">
 	<div class="container">
 	    <div class="row">
 	        <div class="col-md-12">
@@ -69,34 +78,153 @@
 </section>
 <!--End breadcrumb area-->
 
+<!--Start contact form area-->
+<section class="contact-form-area">
+    <div class="container">
+        <div class="sec-title">
+            <h1>Get in Touch With Us</h1>
+            <span class="border"></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <div class="contact-form">
+                    {% if not user.is_authenticated %}
+                        <div class="alert alert-warning" style="background-color: SteelBlue; color: white;">
+                            <p>Вы не авторизованы. Пожалуйста, <a href="{% url 'login' %}" style="color: white; text-decoration: underline;">авторизуйтесь</a>.</p>
+                        </div>
+                    {% else %}
+                        <form id="contact-form" name="contact_form" class="default-form" action="{% url 'contact' %}" method="post">
+                            {% csrf_token %}
+                            <h2>Contact Us</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="your_name" placeholder="Your Name*" required>
+                                    {% if form.errors.your_name %}
+                                        <p class="error-message">{{ form.errors.your_name }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" name="your_email" placeholder="Your Email*" required>
+                                    {% if form.errors.your_email %}
+                                        <p class="error-message">{{ form.errors.your_email }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="phone_number" placeholder="Phone Number*" required>
+                                    {% if form.errors.phone_number %}
+                                        <p class="error-message">{{ form.errors.phone_number }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- <input type="text" name="subject" placeholder="Subject"> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea name="description" placeholder="Your Message.." required></textarea>
+                                    {% if form.errors %}
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            {% for field, errors in form.errors.items %}
+                                                {% for error in errors %}
+                                                    <li>{{ error }}</li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %} 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="thm-btn bgclr-1" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Записаться</button>
+                                </div>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <div class="quick-contact">
+                    <div class="title">
+                        <h2>Quick Contact</h2>
+                        <p>If you have any questions, simply use the following contact details.</p>
+                    </div>
+                    <ul class="contact-info">
+                        <li>
+                            <div class="icon-holder">
+                                <span class="flaticon-pin"></span>
+                            </div>
+                            <div class="text-holder">
+                                <h5><span>Address:</span> 121, Park Drive, Varick Str<br>New York, NY 10012, USA</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-holder">
+                                <span class="flaticon-technology"></span>
+                            </div>
+                            <div class="text-holder">
+                                <h5><span>Phone:</span> 996550180088 &<br>996553333230</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!--End contact form area-->  
 
-<!--Start footer area-->
-    {% include 'base/footer.html' %}
+<!--Start contact map area-->
+<section class="contact-map-area">
+    <div class="container-fluid">
+        <div class="google-map-inner">
+            <div 
+                class="google-map" 
+                id="contact-google-map" 
+                data-map-lat="44.529688" 
+                data-map-lng="-72.933009" 
+                data-icon-path="images/resources/map-marker.png" 
+                data-map-title="Brooklyn, New York, United Kingdom" 
+                data-map-zoom="12" 
+                data-markers='{
+                    "marker-1": [44.529688, -72.933009, "<h4>Head Office</h4><p>44/77 Alabama, a western U.S.A</p>"]
+                }'>
+            </div>
+        </div>  
+    </div>
+</section>
+<!--End contact map area-->
+{% include 'base/footer.html' %}
+
 <!--End footer area-->
 
 <!--Start footer bottom area-->
-{#<section class="footer-bottom-area">#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-md-8">#}
-{#                <div class="copyright-text">#}
-{#                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="col-md-4">#}
-{#                <ul class="footer-social-links">#}
-{#                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
-{#                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
-{#                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>#}
-{#                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
-{#                </ul>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
+{% comment %} <section class="footer-bottom-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="copyright-text">
+                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p> 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="footer-social-links">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section> {% endcomment %}
 <!--End footer bottom area-->
 
 </div>
 
-{% endblock %}
+
+{% endblock%}

@@ -13,7 +13,7 @@ class Schedule(models.Model):
         ('Saturday', 'Saturday'),
         ('Sunday', 'Sunday'),
     ]
-    time = models.CharField(max_length=100)  
+    working_hours = models.CharField(max_length=100)  
     choosing_a_doctor = models.ForeignKey(
         Doctor,
         on_delete=models.CASCADE,
@@ -23,4 +23,4 @@ class Schedule(models.Model):
     experience = models.CharField(max_length=40)
 
     def __str__(self):
-        return f"{self.choosing_a_doctor} ({self.time})"
+        return f"{self.choosing_a_doctor} ({self.working_hours})"

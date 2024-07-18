@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import (BlogCreateView, BlogListView, BlogDetailView, BlogUpdateView, BlogDeleteView,DepartmentsListView, AboutUsView,GalleryListView,ContactListView,
-                    GallerySingleView, BlogLargeView,BlogSingleView, GalleryUpdateView, GalleryDeleteView, GalleryCreateView,NewssearchView)
+from .views import ( BlogCreateView, BlogListView, BlogDetailView, BlogUpdateView, BlogDeleteView, DepartmentsListView, AboutUsView, GalleryListView,
+                    GallerySingleView, BlogLargeView, BlogSingleView, GalleryUpdateView, GalleryDeleteView, GalleryCreateView, NewssearchView, )
 
 
 
@@ -14,7 +14,6 @@ urlpatterns = [
     path('about/',  AboutUsView.as_view(), name='about_us'),
     path('gallery/', GalleryListView.as_view(), name='gallery'),
     path('gallery/single', GallerySingleView.as_view(), name='gallery_detail'),
-    path('contact/', ContactListView.as_view(), name='contact'),
     path('blog/large', BlogLargeView.as_view(), name='blog-large'),
     path('blog/single', BlogSingleView.as_view(), name='blog-single'),
     path('gallery/<int:pk>/update/', GalleryUpdateView.as_view(), name='gallery_update'),

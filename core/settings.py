@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'apps.schedules',
     'apps.products',
     'apps.cart',
+    
 
 
     

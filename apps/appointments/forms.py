@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from .models import Appointment
+from .models import Appointment, Contact
 
 # class AppointmentCreateForm(forms.ModelForm):
     # class Meta:
@@ -96,3 +96,19 @@ class AppointmentDeleteForm(forms.ModelForm):
 
 
 
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['your_name', 'your_email', 'phone_number', 'description']
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
+        if not phone_number.isdigit():
+            raise forms.ValidationError('Номер телефона должен содержать только цифры.')
+        return phone_number
+
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        if len(description) > 150:
+            raise forms.ValidationError('Длина описания не должна превышать 150 символов.')
+        return description

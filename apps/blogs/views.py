@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import generic
-from apps.blogs.models import Blog,Departments,About,Gallery,Contact
+from apps.blogs.models import Blog,Departments,About,Gallery
 from apps.blogs.forms import BlogCreateForm, BlogUpdateForm, BlogDeleteForm,GalleryCreateForm,GalleryUpdateForm,GalleryDeleteForm,NewsSearchForm
 
 from django.views.generic import View
@@ -124,9 +124,6 @@ class GallerySingleView(generic.ListView):
         return context
 
 
-class ContactListView(generic.ListView):
-    model = Contact
-    template_name = 'contact.html'
 
 class NewssearchView(View):
     def get(self, request):

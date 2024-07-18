@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+<section class="thank-you-area">
+    <div class="container">
+        <div class="sec-title">
+            <h1>Thank You for Contacting Us</h1>
+            <span class="border"></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <div class="thank-you-message">
+                    <p>We appreciate your interest in our clinic. Your message has been received, and we will respond to you as soon as possible.</p>
+                    <p>Please check your email at <strong>{{ user_email }}</strong> for our response.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li><span>Phone:</span> 996550180088 & 996553333230</li>
+                        <li><span>Email:</span> mailus@hospitalteam.com</li>
+                        <li><span>Address:</span> 121, Park Drive, Varick Str, New York, NY 10012, USA</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

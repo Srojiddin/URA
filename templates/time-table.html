@@ -136,8 +136,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Monday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -146,8 +147,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Tuesday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -156,8 +158,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Wednesday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -166,8 +169,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Thursday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -176,8 +180,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Friday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -186,8 +191,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Saturday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -196,8 +202,9 @@
                                     {% for schedule in doctor.schedule_set.all %}
                                         {% if schedule.day == 'Sunday' %}
                                             <div class="inner-content text-center">
-                                                <span>Время: {{ schedule.time }}</span>
+                                                <span>Время: {{ schedule.working_hours }}</span>
                                                 <p>Опыт: {{ schedule.experience }}</p>
+                                                <p>Doctor: {{ schedule.choosing_a_doctor }}</p>
                                             </div>
                                         {% endif %}
                                     {% endfor %}

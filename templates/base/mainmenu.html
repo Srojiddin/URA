@@ -18,18 +18,17 @@
                                 <ul>
                                     <li><a href="{% url 'about_us' %}">About Hospitals</a></li>
                                     <li><a href="{% url 'doctors_list' %}">Meet Our Doctors</a></li>
-                                   <li><a href="faq.html">FAQ’s</a></li>
-{#                                    <li><a href="testimonials.html">Testimonials</a></li>#}
+                                    <li><a href="faq.html">FAQ’s</a></li>
+                                    {# <li><a href="testimonials.html">Testimonials</a></li> #}
                                     <li><a href="{% url 'gallery' %}">Our Gallery</a></li>
-                                    <li><a href="{% url 'gallery_detail'  %}">Gallery Single</a></li>
-{#                                     {% for gallery in blogs %}#}
-{#                                    <li><a href="{% url 'gallery_detail' gallery.pk %}"></a></li>#}
-{#                                    {% endfor %}#}
+                                    <li><a href="{% url 'gallery_detail' %}">Gallery Single</a></li>
+                                    {# {% for gallery in blogs %} #}
+                                    {# <li><a href="{% url 'gallery_detail' gallery.pk %}"></a></li> #}
+                                    {# {% endfor %} #}
                                 </ul>
-
                             </li>
-                            {% comment %} <li class="dropdown"><a href="{% url 'departments' %}">Departments</a> {% endcomment %}
-                                {% comment %} <ul>
+                             <li class="dropdown"><a href="{% url 'departments' %}">Departments</a>
+                                <ul>
                                     <li><a href="cardiac-clinic.html">Cardiac Clinic</a></li>
                                     <li><a href="pulmonology.html">Pulmonology</a></li>
                                     <li><a href="gynecology.html">Gynecology</a></li>
@@ -38,8 +37,8 @@
                                     <li><a href="gastrology.html">Gastrology</a></li>
                                     <li><a href="pediatrician.html">Pediatrician</a></li>
                                     <li><a href="laborotory.html">Laborotory</a></li>
-                                </ul> {% endcomment %}
-                            </li>
+                                </ul>
+                            </li> 
                             <li><a href="{% url 'time_table' %}">Time Table</a></li>
                             <li class="dropdown"><a href="{% url 'blog' %}">News</a>
                                 <ul>
@@ -53,38 +52,37 @@
                                 <ul>
                                     <li><a href="{% url 'shop' %}">Shop Products</a></li>
                                     {% for product in products %}
-                                    <a href="{% url 'medicine_detail' pk=product.pk %}"> {{ product.title }} </a>
-                                    <!-- Ensure product.pk is a valid integer -->
+                                    <li><a href="{% url 'medicine_detail' pk=product.pk %}">{{ product.title }}</a></li>
                                     {% endfor %}
                                     <li><a href="{% url 'cart' %}">Shopping Cart</a></li>
                                     <li><a href="{% url 'checkout' %}">Checkout</a></li>
-
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="{% url 'register' %}">register</a>
+                            <li class="dropdown">
+                                <a href="{%url 'contact'%}">Contact Us</a>
                                 <ul>
-                                    <li><a href="{% url 'login' %}">login</a></li>
-                                    <li><a href="">profile</a></li>
+                                    <li><a href="{% url 'register' %}">Register</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    <li><a href="">Profile</a></li>
                                 </ul>
-
-
+                            </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </nav>
-  
-
                 <!--End mainmenu-->
                 <!--Start mainmenu right box-->
                 <div class="mainmenu-right-box pull-right">
                     <div class="cart_select">
-                         <a href="{% url 'cart' %}">
+                        <a href="{% url 'cart' %}">
                             <button><i class="fa fa-shopping-cart" aria-hidden="true"></i><span id="cart-item-count">{{ cart.total_items }}</span></button>
-                             </a>
+                        </a>
                     </div>
-                    {% comment %} <div class="consultation-button">
+                     <div class="consultation-button">
                         <a href="{% url 'create-appointments' %}">For Consultation</a>
-                    </div>
-                </div> {% endcomment %}
+                    </div> 
+                </div>
                 <!--End mainmenu right box-->
             </div>
         </div>
