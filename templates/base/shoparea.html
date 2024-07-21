@@ -21,33 +21,30 @@
                         </div>
                     </div>
                     <div class="row">
-                        {% for medicine in products %}
+                        {% for product, form in product_forms %}
                         <!-- Start single product item -->
                         <div class="col-md-4 col-sm-12 col-xs-12">
                             <div class="single-product-item">
                                 <div class="img-holder">
-                                    {% if medicine.image %}
-                                    <img src="{{ medicine.image.url }}" alt="Awesome Product Image">
-                                     {% else %}
-    <p>No image available</p>
-{% endif %}
+                                    {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="Awesome Product Image">
+                                    {% else %}
+                                    <p>No image available</p>
+                                    {% endif %}
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content">
                                                 <div class="product">
-                                                    {% comment %} <h3>{{ medicine.title }}</h3> {% endcomment %}
-                                                    {% comment %} <p>{{ medicine.description }}</p> {% endcomment %}
-                                                    <form action="{% url 'add_to_cart' medicine.pk %}" method="post">
+                                                    <form action="{% url 'add_to_cart' product.pk %}" method="post">
                                                         {% csrf_token %}
-                                                        <!-- Assuming AddToCartForm includes quantity field -->
                                                         {{ form.quantity }}
                                                         <button class="thm-btn bgclr-1 addtocart" type="submit">Add to Cart</button>
                                                     </form>
-                                                    {% if request.user.is_superuser  %}
+                                                    {% if request.user.is_superuser %}
                                                     <div class="admin-buttons">
-                                                        <a href="{% url 'medicine_create'  %}" class="btn btn-info btn-sm">Edit</a>
-                                                        <a href="{% url 'medicine_update' medicine.pk %}" class="btn btn-info btn-sm">Edit</a>
-                                                        <a href="{% url 'medicine_delete' medicine.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                                                        <a href="{% url 'medicine_create' %}" class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{% url 'medicine_update' product.pk %}" class="btn btn-info btn-sm">Update</a>
+                                                        <a href="{% url 'medicine_delete' product.pk %}" class="btn btn-danger btn-sm">Delete</a>
                                                     </div>
                                                     {% endif %}
                                                 </div>
@@ -58,11 +55,11 @@
                                 <div class="title-holder">
                                     <div class="top clearfix">
                                         <div class="product-title pull-left">
-                                            <h5>{{ medicine.title}}</h5>
+                                            <h5>{{ product.title }}</h5>
                                         </div>
                                     </div>
                                     <div class="product-value">
-                                        <h4>{{ medicine.price }}</h4>
+                                        <h4>{{ product.price }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -74,6 +71,4 @@
             </div>
         </div>     
     </div>   
-</div>
-</div>
 </section>

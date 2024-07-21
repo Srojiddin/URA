@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск</title>
+    <!-- Добавьте свои стили и скрипты здесь -->
+</head>
+<body>
+
+    <!-- Форма поиска для Doctor -->
+    {% comment %} {% extends 'base.html' %} {% endcomment %}
+
+    {% block content %}
+        <h2>Поиск врачей</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Поиск</button>
+        </form>
+    
+        {% if doctors %}
+            <h3>Результаты поиска:</h3>
+            <ul>
+                {% for doctor in doctors %}
+                    <li>{{ doctor.name }} - {{ doctor.choosing_a_specialization }}</li>
+                {% empty %}
+                    <li>Врачи не найдены.</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endblock %}
+
+
+    <!-- Форма поиска для Blog -->
+    <section class="search-section">
+        <h2>Поиск блогов</h2>
+        <form method="get" action="{% url 'blog_search' %}">
+            {{ blog_form.as_p }}
+            <button type="submit">Поиск</button>
+        </form>
+    </section>
+
+    <!-- Результаты поиска для Blog -->
+    {% if blogs %}
+    <section class="search-results">
+        <h3>Результаты поиска блогов:</h3>
+        <ul>
+            {% for blog in blogs %}
+                <li>
+                    <a href="{% url 'blog_detail' blog.pk %}">
+                        {{ blog.title }} - {{ blog.description|slice:":100" }}
+                    </a>
+                </li>
+            {% empty %}
+                <li>Блоги не найдены.</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    <!-- Форма поиска для Medicine -->
+    <section class="search-section">
+        <h2>Поиск медикаментов</h2>
+        <form method="get" action="{% url 'medicine_search' %}">
+            {{ medicine_form.as_p }}
+            <button type="submit">Поиск</button>
+        </form>
+    </section>
+
+    <!-- Результаты поиска для Medicine -->
+    {% if medicines %}
+    <section class="search-results">
+        <h3>Результаты поиска медикаментов:</h3>
+        <ul>
+            {% for medicine in medicines %}
+                <li>
+                    <a href="{% url 'medicine_detail' medicine.pk %}">
+                        {{ medicine.title }} - {{ medicine.price }}
+                    </a>
+                </li>
+            {% empty %}
+                <li>Медикаменты не найдены.</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+</body>
+</html>
+

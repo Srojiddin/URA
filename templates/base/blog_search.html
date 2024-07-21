@@ -1,0 +1,21 @@
+ {% extends 'base.html' %}
+
+{% block content %}
+    <h2>Поиск блогов</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Поиск</button>
+    </form>
+
+    {% if blogs %}
+        <h3>Результаты поиска:</h3>
+        <ul>
+            {% for blog in blogs %}
+                <li>{{ blog.title }} - {{ blog.description|slice:":100" }}</li>
+            {% empty %}
+                <li>Блоги не найдены.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %} 

@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Записи к доктору</title>
+</head>
+<body>
+    <h1>Записи к доктору {{ request.user.doctorprofile.user.username }}</h1>
+    <ul>
+        {% for appointment in appointments %}
+            <li>
+                <p><strong>Пациент:</strong> {{ appointment.fullname }}</p>
+                <p><strong>Дата и время записи:</strong> {{ appointment.date_of_reservation }} {{ appointment.time_of_reservation }}</p>
+            </li>
+        {% empty %}
+            <li>Нет записей к вам.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

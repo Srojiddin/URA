@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль доктора</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Профиль доктора {{ profile.user.username }}</h1>
+        <div>
+            {% if profile.user.avatar %}
+                <img src="{{ profile.user.avatar.url }}" alt="Avatar">
+            {% else %}
+                <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="Avatar">
+            {% endif %}
+            <p><strong>Код профиля:</strong> {{ profile.profile_code }}</p>
+            <p><strong>Биография:</strong> {{ profile.bio }}</p>
+        </div>
+        <div>
+            <h2>Записи на прием:</h2>
+            <ul>
+                {% for appointment in appointments %}
+                    <li>
+                        <p><strong>Пациент:</strong> {{ appointment.fullname }}</p>
+                        <p><strong>Дата и время:</strong> {{ appointment.date_of_reservation }} {{ appointment.time_of_reservation }}</p>
+                    </li>
+                {% empty %}
+                    <li>Нет записей на прием.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'edit_doctor_profile' %}" class="btn btn-primary">Редактировать профиль</a>
+    </div>
+</body>
+</html>

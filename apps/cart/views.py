@@ -19,6 +19,7 @@ class CartListView(LoginRequiredMixin, TemplateView):
         context['cart'] = cart
         return context
 
+
 class MinusQuantityView(LoginRequiredMixin, View):
     def post(self, request, pk):
         item = get_object_or_404(Item, id=pk)
@@ -74,6 +75,8 @@ def apply_coupon(request):
             messages.error(request, 'Неверный код купона.')
     return redirect('checkout')  
 
+
+
 def calculate_shipping(request):
     if request.method == 'POST':
 
@@ -95,6 +98,8 @@ def calculate_shipping(request):
             return render(request, 'shopping/shopping.html', {'error_message': str(e)})
 
     return render(request, 'shopping/shopping.html')
+
+
 
 def calculate_shipping_cost(zip_code, country):
 
@@ -120,7 +125,6 @@ def checkout(request):
     context['shipping_cost'] = shipping_cost
     
     return render(request, 'checkout.html', context)
-
 
 
 

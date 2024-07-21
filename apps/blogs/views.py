@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import generic
 from apps.blogs.models import Blog,Departments,About,Gallery
-from apps.blogs.forms import BlogCreateForm, BlogUpdateForm, BlogDeleteForm,GalleryCreateForm,GalleryUpdateForm,GalleryDeleteForm,NewsSearchForm
+from apps.blogs.forms import BlogCreateForm, BlogUpdateForm, BlogDeleteForm,GalleryCreateForm,GalleryUpdateForm,GalleryDeleteForm
 
 from django.views.generic import View
 
@@ -125,18 +125,21 @@ class GallerySingleView(generic.ListView):
 
 
 
-class NewssearchView(View):
+class BlogSearchView(View):
     def get(self, request):
-        form = NewsSearchForm()
-        return render(request, 'news_search.html', {'form': form, 'blogs': None})
+        form = BlogSearchForm()
+        return render(request, 'blog/blog_search.html', {'form': form, 'blogs': None})
 
     def post(self, request):
-        form = NewsSearchForm(request.POST)
+        form = BlogSearchForm(request.POST)
         if form.is_valid():
-            search_name = form.cleaned_data.get('search_name')
-            if search_name:
-                blogs = Blog.objects.filter(name__icontains=search_name)  # Filtering by name
-            else:
-                blogs = Blog.objects.all()
-            return render(request, 'news_search.html', {'form': form, 'blogs': blogs})
-        return render(request, 'news_search.html', {'form': form, 'blogs': None})
+            title = form.cleaned_data.get('title')
+
+            blogs = Blog.objects.all()
+
+            if title:
+                blogs = blogs.filter(title__icontains=title)
+
+            return render(request, 'blog/blog_search.html', {'form': form, 'blogs': blogs})
+
+        return render(request, 'blog/blog_search.html', {'form': form, 'blogs': None})

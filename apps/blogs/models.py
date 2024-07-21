@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+from django.urls import reverse
 
 class Blog(models.Model):
     title = models.CharField(
@@ -20,6 +21,9 @@ class Blog(models.Model):
     )
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog_detail', args=[str(self.id)])
 
 
 

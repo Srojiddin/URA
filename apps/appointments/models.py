@@ -27,9 +27,13 @@ class Appointment(models.Model):
     def __str__(self):
         return f"Запись на прием у {self.choosing_a_doctor} на {self.date_of_reservation} в {self.time_of_reservation}"
 
+
+
+
 def validate_phone_number(value):
-    if not value.isdigit():
-        raise ValidationError('Номер телефона должен содержать только цифры.')
+        if not value.isdigit():
+           raise ValidationError('Номер телефона должен содержать только цифры.')
+
 
 class Contact(models.Model):
     user = models.ForeignKey(
@@ -46,6 +50,8 @@ class Contact(models.Model):
         super().clean()
         if len(self.description) > 150:
             raise ValidationError({'description': 'Описание не должно превышать 150 символов.'})
+
+
 
     def __str__(self):
         return self.your_name

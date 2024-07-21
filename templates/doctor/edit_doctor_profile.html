@@ -1,0 +1,38 @@
+{% comment %} <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать профиль</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Редактировать профиль</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Сохранить изменения</button>
+            <a href="{% url 'doctor_profile' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</body> {% endcomment %}
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать профиль</title>
+</head>
+<body>
+    <h1>Редактировать профиль врача</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить изменения</button>
+    </form>
+</body>
+</html>

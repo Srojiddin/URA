@@ -8,10 +8,12 @@ from django.urls import reverse_lazy
 from apps.appointments.models import Appointment, Doctor, Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
-
+from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from .models import Appointment
+
+
 
 class AppointmentList(generic.ListView):
     model = Appointment
@@ -73,5 +75,6 @@ class ContactCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class ThankYouView(TemplateView):
-    template_name = 'thank_you.html'
+# class ThankYouView(TemplateView):
+#     template_name = 'thank_you.html'
+

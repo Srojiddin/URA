@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Поиск медикаментов</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Поиск</button>
+    </form>
+
+    {% if medicines %}
+        <h3>Результаты поиска:</h3>
+        <ul>
+            {% for medicine in medicines %}
+                <li>{{ medicine.title }} - {{ medicine.price }} руб.</li>
+            {% empty %}
+                <li>Медикаменты не найдены.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

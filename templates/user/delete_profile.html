@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удалить профиль</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Удалить профиль</h1>
+        <p>Вы уверены, что хотите удалить свой профиль? Это действие необратимо.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="{% url 'profile' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</body>
+</html>

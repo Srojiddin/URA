@@ -2,7 +2,8 @@ from django import forms
 from apps.blogs.models import Blog
 from .models import Gallery
 
-
+class BlogSearchForm(forms.Form):
+    title = forms.CharField(required=False, label='Название')
 
 class BlogBaseForm(forms.ModelForm):
     class Meta:
@@ -27,8 +28,7 @@ class BlogDeleteForm(BlogBaseForm):
     pass
 
 
-class NewsSearchForm(forms.Form):
-    search_name = forms.CharField(label='Search by Name', required=False)
+
 
 class GalleryCreateForm(forms.ModelForm):
     class Meta:
