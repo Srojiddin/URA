@@ -1,10 +1,10 @@
 from django.urls import path
 from .views import MedicineListView, MedicineCreateView, MedicineSingleListView, MedicineDetailView, MedicineUpdateView, MedicineDeleteView
 from . import views
-from .views import SearchView
+# from .views import SearchView
 
-from .views import  MedicineSearchView
 
+from .views import search_medicine,submit_order
 
 urlpatterns = [
     path('shop/', MedicineListView.as_view(), name='shop'),
@@ -14,7 +14,9 @@ urlpatterns = [
     path('product/<int:pk>/', MedicineSingleListView.as_view(), name='product-single'),
     path('medicine/<int:pk>/', views.MedicineDetailView.as_view(), name='medicine_detail'),
     path('medicine/', MedicineListView.as_view(), name='medicine_list'),
-    path('search/', SearchView.as_view(), name='search'),
-    path('search/medicines/', MedicineSearchView.as_view(), name='medicine_search'),
+    path('search/', search_medicine, name='search_medicine'),
+    path('submit_order/', views.submit_order, name='submit_order'),
+
+
 
 ]

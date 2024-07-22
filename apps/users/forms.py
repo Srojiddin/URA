@@ -3,40 +3,51 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from .models import CustomUser
 
+from apps.doctors.models import Doctor
+
+
 User = get_user_model()
 
 
 
+class DoctorEditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['name', 'choosing_a_specialization', 'phone_number', 'email', 'image_for_doctor']
+        widgets = {
+            'image_for_doctor': forms.ClearableFileInput(),
+        }
 
-
-
-
-
+        
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'first_name', 'last_name', 'role')
+        fields = ('username', 'email', 'first_name', 'last_name', 'role',)
+
 
 
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Подтвердите пароль', widget=forms.PasswordInput)
-    
+
     SPECIALIZATION_CHOICES = [
-        ('Cardiologist', 'Кардиолог'),
-        ('Gynaecologist', 'Гинеколог'),
-        ('Neurologist', 'Невролог'),
-        ('Ophthalmologist', 'Офтальмолог'),
-        ('Paediatrician', 'Педиатр'),
-        ('General Practitioner', 'Общий врач'),
+        ('Cardiologist', 'Cardiologist'),
+        ('Gynaecologist', 'Gynaecologist'),
+        ('Neurologist', 'Neurologist'),
+        ('Ophthalmologist', 'Ophthalmologist'),
+        ('Paediatrician', 'Paediatrician'),
+        ('General Practitioner', 'General Practitioner'),
     ]
 
     role = forms.ChoiceField(choices=CustomUser.ROLE_CHOICES, required=True)
     specialization = forms.ChoiceField(choices=SPECIALIZATION_CHOICES, required=False)
+    name = forms.CharField(max_length=100)
+    phone_number = forms.CharField(max_length=15)
+    email = forms.EmailField()
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'phone_number', 'avatar', 'role', 'specialization')
+        fields = ('username', 'email', 'phone_number', 'image_for_doctor', 'role', 'specialization', 'name')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -51,6 +62,7 @@ class CustomUserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
 
 class CustomAuthenticationForm(AuthenticationForm):
     role = forms.ChoiceField(choices=CustomUser.ROLE_CHOICES, required=True)

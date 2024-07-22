@@ -7,10 +7,10 @@ from django.utils.crypto import get_random_string
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.conf import settings
+
 
 CustomUser = get_user_model()
-
-
 
 class Doctor(models.Model):
     SPECIALIZATION_CHOICES = [
@@ -25,25 +25,25 @@ class Doctor(models.Model):
     choosing_a_specialization = models.CharField(max_length=50, choices=SPECIALIZATION_CHOICES)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField()
-    image_for_doctor = models.ImageField(upload_to='doctors/')
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='doctor')
-
+    image_for_doctor = models.ImageField(upload_to='doctor_images/')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='doctor_profile')
 
     def __str__(self):
         return f"{self.name}: {self.choosing_a_specialization}"
 
-    def get_absolute_url(self):
-        return reverse('doctors_list', args=[str(self.id)])
 
 
+@receiver(post_save, sender=CustomUser)
+def create_doctor_profile(sender, instance, created, **kwargs):
+    if created and instance.role == 'Doctor':
+        if not Doctor.objects.filter(user=instance).exists():
+            Doctor.objects.create(
+                user=instance,
+                name=instance.username,  # Укажите необходимые поля
+                choosing_a_specialization=instance.specialization,
+                phone_number=instance.phone_number,
+                email=instance.email,
+                image_for_doctor=instance.avatar
+            )
 
-class DoctorProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    profile_code = models.CharField(max_length=10, unique=True)
-    phone_number = models.CharField(max_length=15)
-    email = models.EmailField()
-    image_for_doctor = models.ImageField(upload_to='doctors/')
-
-    def __str__(self):
-        return self.user.username
 

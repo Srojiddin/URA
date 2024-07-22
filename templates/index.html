@@ -126,6 +126,13 @@
                             <p>Вы не авторизованы. Пожалуйста, <a href="{% url 'login' %}" style="color: white; text-decoration: underline;">авторизуйтесь</a>.</p>
                         </div>
                     {% else %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" style="background-color: {% if message.tags == 'error' %} red {% else %} green {% endif %}; color: white;">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <div class="form-holder clearfix">
                             <form id="appointment" class="clearfix" name="appointment-form" action="{% url 'create-appointments' %}" method="post">
                                 {% csrf_token %}
@@ -153,9 +160,6 @@
                                 </div>
                                 <div class="single-box">
                                     <div class="input-box">
-                                        <!-- Удален выпадающий список отделения -->
-                                    </div>
-                                    <div class="input-box">
                                         <input type="text" name="date_of_reservation" placeholder="Выберите дату" id="datepicker" value="{{ form.date_of_reservation.value }}" required>
                                         <input type="time" name="time_of_reservation" placeholder="Выберите время" value="{{ form.time_of_reservation.value }}" required>
                                         <div class="icon-box">
@@ -182,6 +186,8 @@
         </div>
     </div>
 </section>
+
+
 <!--End call to action area-->
 
 <!--Start Medical Departments area-->

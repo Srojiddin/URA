@@ -123,23 +123,3 @@ class GallerySingleView(generic.ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-
-
-class BlogSearchView(View):
-    def get(self, request):
-        form = BlogSearchForm()
-        return render(request, 'blog/blog_search.html', {'form': form, 'blogs': None})
-
-    def post(self, request):
-        form = BlogSearchForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data.get('title')
-
-            blogs = Blog.objects.all()
-
-            if title:
-                blogs = blogs.filter(title__icontains=title)
-
-            return render(request, 'blog/blog_search.html', {'form': form, 'blogs': blogs})
-
-        return render(request, 'blog/blog_search.html', {'form': form, 'blogs': None})

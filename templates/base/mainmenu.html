@@ -26,7 +26,7 @@
                                     {# <li><a href="{% url 'gallery_detail' gallery.pk %}"></a></li> #}
                                     {# {% endfor %} #}
                                 </ul>
-                            </li>
+                            {% comment %} </li>
                              <li class="dropdown"><a href="{% url 'departments' %}">Departments</a>
                                 <ul>
                                     <li><a href="cardiac-clinic.html">Cardiac Clinic</a></li>
@@ -38,8 +38,8 @@
                                     <li><a href="pediatrician.html">Pediatrician</a></li>
                                     <li><a href="laborotory.html">Laborotory</a></li>
                                 </ul>
-                            </li> 
-                            <li><a href="{% url 'time_table' %}">Time Table</a></li>
+                            </li>  {% endcomment %}
+                            {% comment %} <li><a href="{% url 'time_table' %}">Time Table</a></li> {% endcomment %}
                             <li class="dropdown"><a href="{% url 'blog' %}">News</a>
                                 <ul>
                                     <li><a href="{% url 'blog' %}">News Default</a></li>
@@ -51,9 +51,7 @@
                                 <a href="{% url 'shop' %}">Shop</a>
                                 <ul>
                                     <li><a href="{% url 'shop' %}">Shop Products</a></li>
-                                    {% for product in products %}
-                                    <li><a href="{% url 'medicine_detail' pk=product.pk %}">{{ product.title }}</a></li>
-                                    {% endfor %}
+                                    {% comment %} <li><a href="{% url 'medicine_detail' pk=product.pk %}">{{ product.title }}</a></li> {% endcomment %}
                                     <li><a href="{% url 'cart' %}">Shopping Cart</a></li>
                                     <li><a href="{% url 'checkout' %}">Checkout</a></li>
                                 </ul>
@@ -63,7 +61,11 @@
                                 <ul>
                                     <li><a href="{% url 'register' %}">Register</a></li>
                                     <li><a href="{% url 'login' %}">Login</a></li>
-                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile' pk=user.pk %}">Profile</a></li>
+                        {% endif %}
+
+
                                 </ul>
                             </li>
                                 </ul>

@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Удалить расписание</h2>
+  <p>Вы уверены, что хотите удалить расписание для {{ object.choosing_a_doctor.name }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+    <a href="{% url 'schedule_list' %}">Отмена</a>
+  </form>
+{% endblock %}

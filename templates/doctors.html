@@ -65,23 +65,24 @@
 <!--End breadcrumb area-->
 
 <!--Start team area-->
+
 <section class="team-area doctor doctor-page-area">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <ul class="nav nav-tabs tab-menu">
-                    <li class="active"><a href="#cardiologist" data-toggle="tab">Cardiologist</a></li> 
-                    <li><a href="#gynaecologist" data-toggle="tab">Gynaecologist</a></li>
+                    <li class="active"><a href="#cardiologist" data-toggle="tab">Cardiologist</a></li>
+                    <li><a href="#gynaecologist" data-toggle="tab">Gynecologist</a></li>
                     <li><a href="#neurologist" data-toggle="tab">Neurologist</a></li>
                     <li><a href="#ophthalmologist" data-toggle="tab">Ophthalmologist</a></li>
-                    <li><a href="#paediatrician" data-toggle="tab">Paediatrician</a></li>
-                    <li><a href="#practitioner" data-toggle="tab">General Practitioner</a></li> 
+                    <li><a href="#paediatrician" data-toggle="tab">Pediatrician</a></li>
+                    <li><a href="#practitioner" data-toggle="tab">Practitioner</a></li>
                     {% if request.user.is_superuser %}
                     <div class="admin-actions">
-                        <a href="{% url 'doctor_create' %}" class="btn btn-sm btn-primary">создать доктора</a>
+                        <a href="{% url 'doctor_create' %}" class="btn btn-sm btn-primary">Create Doctor</a>
                     </div>
                     {% endif %}
-                </ul>    
+                </ul>
             </div>
             <div class="col-md-9">
                 <div class="tab-content">
@@ -89,146 +90,20 @@
                     <div class="tab-pane active" id="cardiologist">
                         <div class="row">
                             {% for doctor in cardiologists %}
-                            <!-- Single item -->
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {% if request.user.is_superuser %}
-                                                        <div class="admin-actions">
-                                                            <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">обновить докторa</a>
-                                                            <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этого врача?')">Удалить</a>
-                                                        </div>
-                                                        {% endif %}
-                                <div class="single-team-member">
-                                    <div class="img-holder">
-                                        <img src="{{ doctor.image_for_doctor.url }}" alt="Awesome Image">
-                                        <div class="overlay-style">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <div class="top">
-                                                        <h3>{{ doctor.name }}</h3>
-                                                        <span>{{ doctor.choosing_a_specialization }}</span>
-                                                    </div>
-                                                    <span class="border"></span>
-                                                    <div class="bottom">
-                                                        <ul>
-                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
-                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h3>{{ doctor.name }}</h3>
-                                            <span>{{ doctor.choosing_a_specialization}}</span>
-                                        </div>
-                                    </div>
+                                <div class="admin-actions">
+                                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
                                 </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <!-- Gynaecologist tab pane -->
-                    <div class="tab-pane" id="gynaecologist">
-                        <div class="row">
-                            {% for doctor in gynaecologists %}
-                            <!-- Single item -->
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {% if request.user.is_superuser %}
-                                                        <div class="admin-actions">
-                                                            <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">обновить докторa</a>
-                                                            <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этого врача?')">Удалить</a>
-                                                        </div>
-                                                        {% endif %}
+                                {% endif %}
                                 <div class="single-team-member">
                                     <div class="img-holder">
-                                        <img src="{{ doctor.image_for_doctor.url }}" alt="Awesome Image">
-                                        <div class="overlay-style">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <div class="top">
-                                                        <h3>{{ doctor.name }}</h3>
-                                                        <span>{{ doctor.choosing_a_specialization }}</span>
-                                                    </div>
-                                                    <span class="border"></span>
-                                                    <div class="bottom">
-                                                        <ul>
-                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
-                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h3>{{ doctor.name }}</h3>
-                                            <span>{{doctor.choosing_a_specialization}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <!-- Neurologist tab pane -->
-                    <div class="tab-pane" id="neurologist">
-                        <div class="row">
-                            {% for doctor in neurologists %}
-                            <!-- Single item -->
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {% if request.user.is_superuser %}
-                                                        <div class="admin-actions">
-                                                            <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">обновить докторa</a>
-                                                            <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этого врача?')">Удалить</a>
-                                                        </div>
-                                                        {% endif %}
-                                <div class="single-team-member">
-                                    <div class="img-holder">
-                                        <img src="{{ doctor.image_for_doctor.url }}" alt="Awesome Image">
-                                        <div class="overlay-style">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <div class="top">
-                                                        <h3>{{ doctor.name }}</h3>
-                                                        <span>{{ doctor.choosing_a_specialization }}</span>
-                                                    </div>
-                                                    <span class="border"></span>
-                                                    <div class="bottom">
-                                                        <ul>
-                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
-                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h3>{{ doctor.name }}</h3>
-                                            <span>{{ doctor.choosing_a_specialization}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <!-- Ophthalmologist tab pane -->
-                    <div class="tab-pane" id="ophthalmologist">
-                        <div class="row">
-                            {% for doctor in ophthalmologists %}
-                            <!-- Single item -->
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {% if request.user.is_superuser %}
-                                                        <div class="admin-actions">
-                                                            <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">обновить докторa</a>
-                                                            <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этого врача?')">Удалить</a>
-                                                        </div>
-                                                        {% endif %}
-                                <div class="single-team-member">
-                                    <div class="img-holder">
-                                        <img src="{{ doctor.image_for_doctor.url }}" alt="Awesome Image">
+                                        {% if doctor.image_for_doctor %}
+                                            <img src="{{ doctor.image_for_doctor.url }}" alt="Doctor Image">
+                                        {% else %}
+                                            <img src="{% static 'path_to_default_image/default_avatar.jpg' %}" alt="Default Image">
+                                        {% endif %}
                                         <div class="overlay-style">
                                             <div class="box">
                                                 <div class="content">
@@ -251,7 +126,144 @@
                                             <span>{{ doctor.choosing_a_specialization }}</span>
                                         </div>
                                     </div>
-                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Gynaecologist tab pane -->
+                    <div class="tab-pane" id="gynaecologist">
+                        <div class="row">
+                            {% for doctor in gynaecologists %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {% if request.user.is_superuser %}
+                                <div class="admin-actions">
+                                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
+                                </div>
+                                {% endif %}
+                                <div class="single-team-member">
+                                    <div class="img-holder">
+                                        {% if doctor.image_for_doctor %}
+                                            <img src="{{ doctor.image_for_doctor.url }}" alt="Doctor Image">
+                                        {% else %}
+                                            <img src="{% static 'path_to_default_image/default_avatar.jpg' %}" alt="Default Image">
+                                        {% endif %}
+                                        <div class="overlay-style">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <div class="top">
+                                                        <h3>{{ doctor.name }}</h3>
+                                                        <span>{{ doctor.choosing_a_specialization }}</span>
+                                                    </div>
+                                                    <span class="border"></span>
+                                                    <div class="bottom">
+                                                        <ul>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
+                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-holder">
+                                            <h3>{{ doctor.name }}</h3>
+                                            <span>{{ doctor.choosing_a_specialization }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Neurologist tab pane -->
+                    <div class="tab-pane" id="neurologist">
+                        <div class="row">
+                            {% for doctor in neurologists %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {% if request.user.is_superuser %}
+                                <div class="admin-actions">
+                                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
+                                </div>
+                                {% endif %}
+                                <div class="single-team-member">
+                                    <div class="img-holder">
+                                        {% if doctor.image_for_doctor %}
+                                            <img src="{{ doctor.image_for_doctor.url }}" alt="Doctor Image">
+                                        {% else %}
+                                            <img src="{% static 'path_to_default_image/default_avatar.jpg' %}" alt="Default Image">
+                                        {% endif %}
+                                        <div class="overlay-style">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <div class="top">
+                                                        <h3>{{ doctor.name }}</h3>
+                                                        <span>{{ doctor.choosing_a_specialization }}</span>
+                                                    </div>
+                                                    <span class="border"></span>
+                                                    <div class="bottom">
+                                                        <ul>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
+                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-holder">
+                                            <h3>{{ doctor.name }}</h3>
+                                            <span>{{ doctor.choosing_a_specialization }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Ophthalmologist tab pane -->
+                    <div class="tab-pane" id="ophthalmologist">
+                        <div class="row">
+                            {% for doctor in ophthalmologists %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {% if request.user.is_superuser %}
+                                <div class="admin-actions">
+                                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
+                                </div>
+                                {% endif %}
+                                <div class="single-team-member">
+                                    <div class="img-holder">
+                                        {% if doctor.image_for_doctor %}
+                                            <img src="{{ doctor.image_for_doctor.url }}" alt="Doctor Image">
+                                        {% else %}
+                                            <img src="{% static 'path_to_default_image/default_avatar.jpg' %}" alt="Default Image">
+                                        {% endif %}
+                                        <div class="overlay-style">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <div class="top">
+                                                        <h3>{{ doctor.name }}</h3>
+                                                        <span>{{ doctor.choosing_a_specialization }}</span>
+                                                    </div>
+                                                    <span class="border"></span>
+                                                    <div class="bottom">
+                                                        <ul>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
+                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-holder">
+                                            <h3>{{ doctor.name }}</h3>
+                                            <span>{{ doctor.choosing_a_specialization }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             {% endfor %}
@@ -259,97 +271,103 @@
                     </div>
 
                     <!-- Paediatrician tab pane -->
-                <!-- Paediatrician tab pane -->
-<div class="tab-pane" id="paediatrician">
-    <div class="row">
-        {% for doctor in paediatricians %}
-        <!-- Single item -->
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            {% if request.user.is_superuser %}
-            <div class="admin-actions">
-                <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">обновить доктора</a>
-                <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этого врача?')">Удалить</a>
-            </div>
-            {% endif %}
-            <div class="single-team-member">
-                <div class="img-holder">
-                    <img src="{{ doctor.image_for_doctor.url }}" alt="Awesome Image">
-                    <div class="overlay-style">
-                        <div class="box">
-                            <div class="content">
-                                <div class="top">
-                                    <h3>{{ doctor.name }}</h3>
-                                    <span>{{ doctor.choosing_a_specialization }}</span>
+                    <div class="tab-pane" id="paediatrician">
+                        <div class="row">
+                            {% for doctor in paediatricians %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {% if request.user.is_superuser %}
+                                <div class="admin-actions">
+                                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
                                 </div>
-                                <span class="border"></span>
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
-                                        <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
-                                    </ul>
+                                {% endif %}
+                                <div class="single-team-member">
+                                    <div class="img-holder">
+                                        {% if doctor.image_for_doctor %}
+                                            <img src="{{ doctor.image_for_doctor.url }}" alt="Doctor Image">
+                                        {% else %}
+                                            <img src="{% static 'path_to_default_image/default_avatar.jpg' %}" alt="Default Image">
+                                        {% endif %}
+                                        <div class="overlay-style">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <div class="top">
+                                                        <h3>{{ doctor.name }}</h3>
+                                                        <span>{{ doctor.choosing_a_specialization }}</span>
+                                                    </div>
+                                                    <span class="border"></span>
+                                                    <div class="bottom">
+                                                        <ul>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
+                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-holder">
+                                            <h3>{{ doctor.name }}</h3>
+                                            <span>{{ doctor.choosing_a_specialization }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="text-holder">
-                        <h3>{{ doctor.name }}</h3>
-                        <span>{{ doctor.choosing_a_specialization }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
 
-<!-- General Practitioner tab pane -->
-<div class="tab-pane" id="practitioner">
-    <div class="row">
-        {% for doctor in practitioners %}
-        <!-- Single item -->
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            {% if request.user.is_superuser %}
-            <div class="admin-actions">
-                <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">обновить доктора</a>
-                <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этого врача?')">Удалить</a>
-            </div>
-            {% endif %}
-            <div class="single-team-member">
-                <div class="img-holder">
-                    <img src="{{ doctor.image_for_doctor.url }}" alt="Awesome Image">
-                    <div class="overlay-style">
-                        <div class="box">
-                            <div class="content">
-                                <div class="top">
-                                    <h3>{{ doctor.name }}</h3>
-                                    <span>{{ doctor.choosing_a_specialization }}</span>
+                    <!-- Practitioner tab pane -->
+                    <div class="tab-pane" id="practitioner">
+                        <div class="row">
+                            {% for doctor in practitioners %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {% if request.user.is_superuser %}
+                                <div class="admin-actions">
+                                    <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
                                 </div>
-                                <span class="border"></span>
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
-                                        <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
-                                    </ul>
+                                {% endif %}
+                                <div class="single-team-member">
+                                    <div class="img-holder">
+                                        {% if doctor.image_for_doctor %}
+                                            <img src="{{ doctor.image_for_doctor.url }}" alt="Doctor Image">
+                                        {% else %}
+                                            <img src="{% static 'path_to_default_image/default_avatar.jpg' %}" alt="Default Image">
+                                        {% endif %}
+                                        <div class="overlay-style">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <div class="top">
+                                                        <h3>{{ doctor.name }}</h3>
+                                                        <span>{{ doctor.choosing_a_specialization }}</span>
+                                                    </div>
+                                                    <span class="border"></span>
+                                                    <div class="bottom">
+                                                        <ul>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{ doctor.phone_number }}</li>
+                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{ doctor.email }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-holder">
+                                            <h3>{{ doctor.name }}</h3>
+                                            <span>{{ doctor.choosing_a_specialization }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="text-holder">
-                        <h3>{{ doctor.name }}</h3>
-                        <span>{{ doctor.choosing_a_specialization }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-                
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 <!--End team area--> 
   
 <!--Start footer area-->  

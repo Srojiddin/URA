@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.crypto import get_random_string
-from .models import Doctor, CustomUser, DoctorProfile  # Убедитесь, что DoctorProfile импортирован
+from .models import Doctor, CustomUser 
 from .models import Doctor
 
 # class CustomUserRegisterForm(UserCreationForm):

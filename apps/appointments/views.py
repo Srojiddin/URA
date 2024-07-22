@@ -12,7 +12,9 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .models import Appointment
+from django.core.exceptions import PermissionDenied
 
+from django.shortcuts import redirect
 
 
 class AppointmentList(generic.ListView):
@@ -45,24 +47,29 @@ class AppointmentDelete(generic.DeleteView):
 
 
 
-
-
 class AppointmentCreateView(LoginRequiredMixin, CreateView):
     model = Appointment
     form_class = AppointmentCreateForm
     template_name = 'index.html'
     success_url = reverse_lazy('index')
-    
+
+    def dispatch(self, request, *args, **kwargs):
+        # Проверка роли пользователя
+        if not (request.user.role == 'patient' or request.user.is_staff):
+            messages.error(request, "У вас нет прав на создание записи.")
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        messages.success(self.request, 'Ваша запись была успешно создана!')
+        return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['doctors'] = Doctor.objects.all()  
+        context['doctors'] = Doctor.objects.all()
         return context
-
-
 
 
 class ContactCreateView(LoginRequiredMixin, CreateView):

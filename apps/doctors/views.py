@@ -22,16 +22,33 @@ from django.dispatch import receiver
 from .models import CustomUser
 # from .models import DoctorProfile, Appointment
 
+
+        
 class DoctorCreateView(CreateView):
     model = CustomUser
     form_class = CustomUserCreationForm
     template_name = 'doctors/doctor_create.html'
-    success_url = reverse_lazy('doctor-list')
+    success_url = reverse_lazy('doctors_list')
 
     def form_valid(self, form):
-        if not self.request.user.is_staff:  # Проверка, является ли пользователь администратором
+        if not self.request.user.is_staff:
             raise PermissionDenied("Вы не имеете права создавать врачей.")
-        return super().form_valid(form)
+        
+        response = super().form_valid(form)
+        
+        # Проверка роли и создание профиля врача при создании пользователя
+        if form.cleaned_data['role'] == 'doctor':
+            if not Doctor.objects.filter(user=self.object).exists():
+                Doctor.objects.create(
+                    user=self.object,
+                    name=form.cleaned_data['name'],
+                    choosing_a_specialization=form.cleaned_data['specialization'],
+                    phone_number=form.cleaned_data['phone_number'],
+                    email=form.cleaned_data['email'],
+                    image_for_doctor=form.cleaned_data.get('image_for_doctor')  # Убедитесь, что вы передаете изображение
+                )
+        
+        return response
 
 class DoctorListView(generic.ListView):
     model = Doctor
@@ -66,8 +83,8 @@ class DoctorDetailView(generic.DetailView):
 class DoctorUpdateView(UpdateView):
     model = Doctor
     form_class = DoctorUpdateForm
-    template_name = 'doctors-update.htm'
-    success_url = reverse_lazy('doctor-list')
+    template_name = 'doctors/doctor_update.html'
+    success_url = reverse_lazy('doctors_list')
 
     def form_valid(self, form):
         user_email = form.cleaned_data.get('email')
@@ -85,30 +102,5 @@ class DoctorDeleteView(generic.DeleteView):
     context_object_name = 'doctor'
     success_url = reverse_lazy('doctors_list')
 
-
-
-
-class DoctorSearchView(View):
-    def get(self, request):
-        form = DoctorSearchForm()
-        return render(request, 'doctor/doctor_search.html', {'form': form, 'doctors': None})
-
-    def post(self, request):
-        form = DoctorSearchForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data.get('name')
-            specialization = form.cleaned_data.get('specialization')
-
-            doctors = Doctor.objects.all()
-
-            if name:
-                doctors = doctors.filter(name__icontains=name)
-
-            if specialization:
-                doctors = doctors.filter(choosing_a_specialization=specialization)
-
-            return render(request, 'doctor/doctor_search.html', {'form': form, 'doctors': doctors})
-
-        return render(request, 'doctor/doctor_search.html', {'form': form, 'doctors': None})
 
 

@@ -8,7 +8,7 @@ from .models import Cart, Item, Favorite, Medicine
 from apps.cart.forms import AddToFavoriteForm,AddToCartForm
 
 from django.http import JsonResponse
-
+from django.contrib import messages
 
 class CartListView(LoginRequiredMixin, TemplateView):
     template_name = 'shopping-cart.html'
@@ -37,22 +37,26 @@ class PlusQuantityView(LoginRequiredMixin, View):
         item.save()
         return redirect('cart')
 
-    
 class AddToCartView(LoginRequiredMixin, View):
     def post(self, request, product_id):
         product = get_object_or_404(Medicine, id=product_id)
-        quantity = int(request.POST.get('quantity', 1))  
-        cart, created = Cart.objects.get_or_create(user=request.user)
-        
+        quantity = int(request.POST.get('quantity', 1))
 
+        if quantity <= 0:
+            messages.error(request, 'Quantity must be a positive number.')
+            return redirect('shop')  # Redirect to the shop page or another appropriate page
+        
+        cart, created = Cart.objects.get_or_create(user=request.user)
         existing_item = Item.objects.filter(product=product, cart=cart).first()
+
         if existing_item:
             existing_item.quantity += quantity
             existing_item.save()
         else:
-            new_item = Item.objects.create(product=product, cart=cart, quantity=quantity)
-        
-        return redirect('cart')  
+            Item.objects.create(product=product, cart=cart, quantity=quantity)
+
+        messages.success(request, f'{product.title} has been added to your cart.')
+        return redirect('cart')  # Redirect to the cart page
     
 
 class RemoveFromCartView(View):

@@ -5,8 +5,8 @@ from apps.doctors.models import Doctor
 from apps.categories.models import Category
 from apps.doctors.models import Doctor
 from django.conf import settings
+from .validators import validate_phone_number
 
-from django.core.exceptions import ValidationError
 
 
 class Appointment(models.Model):

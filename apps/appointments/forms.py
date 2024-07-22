@@ -16,6 +16,8 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from .models import Appointment
 
+
+
 class AppointmentCreateForm(forms.ModelForm):
     class Meta:
         model = Appointment
@@ -73,7 +75,6 @@ class AppointmentCreateForm(forms.ModelForm):
                 raise ValidationError('Вы не можете записаться на прошедшее время.')
 
         return cleaned_data
-
 
 
 class AppointmentDetailForm(forms.ModelForm):

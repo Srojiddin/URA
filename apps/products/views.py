@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-
+from django.shortcuts import redirect
 from apps.products.models import  Medicine
 from apps.cart.models import Cart
 from django.views import View
 from apps.doctors.forms import DoctorSearchForm
 
-
+from django.contrib import messages
 from apps.blogs.forms import BlogSearchForm
 from apps.products.forms import MedicineSearchForm
 
@@ -46,6 +46,8 @@ class MedicineDetailView(generic.DetailView):
     model = Medicine
     template_name = 'shop-single.html'
     context_object_name = 'product'
+    pk_url_kwarg = 'pk'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -97,115 +99,19 @@ class MedicineSingleListView(generic.DetailView):
 
 
 
-from django.shortcuts import render
 
-
-class MedicineSearchView(View):
-    def get(self, request):
-        form = MedicineSearchForm()
-        return render(request, 'medicine/medicine_search.html', {'form': form, 'medicines': None})
-
-    def post(self, request):
-        form = MedicineSearchForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data.get('title')
-            price_min = form.cleaned_data.get('price_min')
-            price_max = form.cleaned_data.get('price_max')
-
-            medicines = Medicine.objects.all()
-
-            if title:
-                medicines = medicines.filter(title__icontains=title)
-
-            if price_min is not None:
-                medicines = medicines.filter(price__gte=price_min)
-
-            if price_max is not None:
-                medicines = medicines.filter(price__lte=price_max)
-
-            return render(request, 'medicine/medicine_search.html', {'form': form, 'medicines': medicines})
-
-        return render(request, 'medicine/medicine_search.html', {'form': form, 'medicines': None})
+def search_medicine(request):
+    query = request.GET.get('search', '')
+    medicines = Medicine.objects.filter(title__icontains=query)
+    return render(request, 'medicine/medicine_search.html', {'query': query, 'medicines': medicines})
 
 
 
 
-
-
-
-
-
-
-
-class SearchView(View):
-    def get(self, request):
-        # Инициализация форм
-        doctor_form = DoctorSearchForm()
-        blog_form = BlogSearchForm()
-        medicine_form = MedicineSearchForm()
-
-        # Инициализация пустых списков для результатов
-        doctors = None
-        blogs = None
-        medicines = None
-
-        return render(request, 'base/search.html', {
-            'doctor_form': doctor_form,
-            'blog_form': blog_form,
-            'medicine_form': medicine_form,
-            'doctors': doctors,
-            'blogs': blogs,
-            'medicines': medicines,
-        })
-
-    def post(self, request):
-        # Обработка поиска для каждой формы
-        doctor_form = DoctorSearchForm(request.POST)
-        blog_form = BlogSearchForm(request.POST)
-        medicine_form = MedicineSearchForm(request.POST)
-
-        doctors = None
-        blogs = None
-        medicines = None
-
-        if doctor_form.is_valid():
-            name = doctor_form.cleaned_data.get('name')
-            specialization = doctor_form.cleaned_data.get('specialization')
-
-            doctors = Doctor.objects.all()
-
-            if name:
-                doctors = doctors.filter(name__icontains=name)
-            if specialization:
-                doctors = doctors.filter(choosing_a_specialization=specialization)
-
-        if blog_form.is_valid():
-            title = blog_form.cleaned_data.get('title')
-
-            blogs = Blog.objects.all()
-
-            if title:
-                blogs = blogs.filter(title__icontains=title)
-
-        if medicine_form.is_valid():
-            title = medicine_form.cleaned_data.get('title')
-            price_min = medicine_form.cleaned_data.get('price_min')
-            price_max = medicine_form.cleaned_data.get('price_max')
-
-            medicines = Medicine.objects.all()
-
-            if title:
-                medicines = medicines.filter(title__icontains=title)
-            if price_min is not None:
-                medicines = medicines.filter(price__gte=price_min)
-            if price_max is not None:
-                medicines = medicines.filter(price__lte=price_max)
-
-        return render(request, 'search.html', {
-            'doctor_form': doctor_form,
-            'blog_form': blog_form,
-            'medicine_form': medicine_form,
-            'doctors': doctors,
-            'blogs': blogs,
-            'medicines': medicines,
-        })
+def submit_order(request):
+    if request.method == 'POST':
+        # Логика обработки заказа
+        # Например, сохранение заказа и очистка корзины
+        messages.success(request, 'Ваш заказ был успешно размещен.')
+        return redirect('cart')  # Перенаправление на страницу корзины или другую страницу
+    return render(request, 'cart.html')

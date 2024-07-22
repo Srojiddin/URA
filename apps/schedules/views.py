@@ -1,10 +1,20 @@
 from django.shortcuts import render
 from django.views import generic
+from django.utils.timezone import make_aware
+from datetime import time
+from apps.schedules.models import Schedule
+
+from apps.schedules.forms import ScheduleCreateForm
+from .forms import ScheduleCreateForm
+
+from django.urls import reverse_lazy
+from django.shortcuts import render
+from django.views import generic
 
 from apps.schedules.models import Schedule
 
 from apps.schedules.forms import ScheduleCreateForm
-
+from django.views.generic.edit import CreateView,DeleteView
 
 class ScheduleListView(generic.ListView):
     model = Schedule
@@ -30,3 +40,19 @@ class ScheduleListView(generic.ListView):
 
 
 
+
+  
+
+
+class ScheduleCreateView(CreateView):
+    model = Schedule
+    form_class = ScheduleCreateForm
+    template_name = 'schedule_form.html'
+    success_url = reverse_lazy('schedule_list')
+
+
+
+class ScheduleDeleteView(DeleteView):
+    model = Schedule
+    template_name = 'schedule_confirm_delete.html'
+    success_url = reverse_lazy('schedule_list')

@@ -1,0 +1,50 @@
+<section class="header-search" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-form">
+                    <form action="{% url 'search_medicine' %}" method="get">
+                        <div class="input-group">
+                            <input type="search" name="search" value="{{ query }}" class="form-control" placeholder="Поиск по названию">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Поиск</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="medicine-search-results">
+    <div class="container">
+        <div class="row">
+            {% if medicines %}
+                {% for medicine in medicines %}
+                    <div class="col-md-4">
+                        <div class="medicine-item">
+                            {% if medicine.image %}
+                                <img src="{{ medicine.image.url }}" alt="{{ medicine.title }}" class="img-fluid">
+                            {% endif %}
+                            <h3>{{ medicine.title }}</h3>
+                            <p>{{ medicine.description }}</p>
+                            <p>Цена: {{ medicine.price }} руб.</p>
+                            <form action="{% url 'add_to_cart' medicine.pk %}" method="post">
+                                {% csrf_token %}
+                                <div class="quantity">
+                                    <label for="quantity_{{ medicine.pk }}">Количество:</label>
+                                    <input type="number" name="quantity" id="quantity_{{ medicine.pk }}" value="1" min="1">
+                                </div>
+                                <button class="thm-btn bgclr-1 addtocart" type="submit">Добавить в корзину</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>По вашему запросу ничего не найдено.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>

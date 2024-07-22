@@ -4,7 +4,7 @@ from .views import ( BlogCreateView, BlogListView, BlogDetailView, BlogUpdateVie
 
 
 
-from .views import BlogSearchView
+
 
 urlpatterns = [
     path('create/blog/', BlogCreateView.as_view(), name='create_blog'),
@@ -21,6 +21,5 @@ urlpatterns = [
     path('gallery/<int:pk>/update/', GalleryUpdateView.as_view(), name='gallery_update'),
     path('gallery/<int:pk>/delete/', GalleryDeleteView.as_view(), name='gallery_delete'),
     path('gallery/create/', GalleryCreateView.as_view(), name='gallery_list'),
-    path('search/blog/', BlogSearchView.as_view(), name='blog_search'),
 ]
 

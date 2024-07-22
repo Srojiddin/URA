@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{%load static %}
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -77,7 +77,7 @@
             {{ form.as_p }}
             <div class="form-actions">
                 <button type="submit" class="btn btn-success">Сохранить изменения</button>
-                <a href="{% url 'profile' %}" class="btn btn-secondary">Отмена</a>
+                <a href="{% url 'profile' profile.pk %}" class="btn btn-secondary">Отмена</a>
             </div>
         </form>
     </div>
